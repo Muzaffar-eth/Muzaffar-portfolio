@@ -155,8 +155,27 @@
 							</div>
 							<div class="age">
 								<span>Age</span>
-								21
+								<span id="age"></span>
 							</div>
+							<script>
+								function calculateAge(birthDate) {
+									const today = new Date();
+									const birth = new Date(birthDate);
+									let age = today.getFullYear() - birth.getFullYear();
+									
+									// Adjust age if birthday hasn't occurred yet this year
+									const hasBirthdayOccurred = (today.getMonth() > birth.getMonth()) ||
+										(today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+									if (!hasBirthdayOccurred) {
+										age--;
+									}
+									return age;
+								}
+								
+								// Set your birthdate (YYYY, MM-1, DD)
+								const birthDate = new Date(2002, 7, 11); // Example: August 15, 2002
+								document.getElementById("age").textContent = calculateAge(birthDate);
+</script>
 							<div class="Address">
 								<span>Address</span>
 								Hyderabad, Telengana, India
